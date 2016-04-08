@@ -1,7 +1,12 @@
 
 def gradient_step(xk, df, sigma):
-    pass
+    """Returns the next iterate x_{k+1} given x_k, the derivative 'f', and parameter sigma
 
+     """
+   return  x_next = xk - simga*df(xk) 
+
+
+    
 def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
     """Returns a minima of `f` using the Gradient Descent method.
 
