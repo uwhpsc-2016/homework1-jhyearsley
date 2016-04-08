@@ -1,5 +1,9 @@
 # the documenation has been written for you in this exercise
 
+import matplotlib.pyplot as plt
+
+
+
 def collatz_step(n):
     """Returns the result of the Collatz function.
 
