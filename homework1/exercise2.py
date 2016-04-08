@@ -2,8 +2,27 @@
 def gradient_step(xk, df, sigma):
     """Returns the next iterate x_{k+1} given x_k, the derivative 'f', and parameter sigma
 
+    The next iterate x_{k+1} is found by evaluating the difference between x_k and the
+    product of sigma with the derivative function f' evaluated at x_k.
+
+    Parameters
+    ----------
+    xk : float
+       The value at iteration k
+
+    df : function
+       The derivative of the function 'f'
+
+    sigma : float
+       parameter between 0 and 1
+
+
+    Returns
+    -------
+    x_next : float
+       gives the next iterate x_{k+1}
      """
-   return  x_next = xk - simga*df(xk) 
+   return  x_next = xk - sigma*df(xk) 
 
 
     
@@ -16,6 +35,31 @@ def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
     `gradient_descent` raises a ValueError if `sigma` is not strictly between
     zero and one.
 
-    [STUDENTS: FILL IN THE REST OF THE DOCUMENTATION!]
-    """
+
+    Parameters
+    ----------
+    f : function
+      This is the function you want to minimize.
+
+    df : function
+      This is the derivative of the function you want to minimize.
+
+    x : float
+      Initial guess to start gradient descent. This value is important! If you
+      guess closer to the actual value, convergence will be faster.
+
+    sigma : keyword argument
+      Optional parameter between 0 and 1 for scaling descent.
+      
+    epsilon: keyword argument
+      Optional parameter between 0 and 1 to adjust convergence tolerance
+
+
+    Returns
+    -------
+    xmin : float
+      This is the local minima x* such that f(x*)<=f(x) in the neighborhood of x*.
+
+
+     """
     pass
