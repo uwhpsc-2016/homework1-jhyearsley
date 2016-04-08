@@ -1,3 +1,6 @@
+import numpy as np
+import maptlotlib.pyplot as plt
+
 
 def gradient_step(xk, df, sigma):
     """Returns the next iterate x_{k+1} given x_k, the derivative 'f', and parameter sigma
@@ -21,11 +24,14 @@ def gradient_step(xk, df, sigma):
     -------
     x_next : float
        gives the next iterate x_{k+1}
-     """
-   return  x_next = xk - sigma*df(xk) 
+def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):     """
 
 
-    
+    x_next = xk - sigma*df(xk) 
+
+    return x_next
+
+ 
 def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
     """Returns a minima of `f` using the Gradient Descent method.
 
@@ -62,4 +68,16 @@ def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
 
 
      """
-    pass
+
+    if not(0<sigma<1):
+        raise ValueError('Sigma must be a value strictly between 0 and 1')
+    
+    epsilon = 1e-8
+    sigma = 0.5
+
+    xnext = gradient_step(x,df,sigma)
+   
+    
+
+    while abs(gradient_step(x,df,sigma)-x) > epsilon:
+        
