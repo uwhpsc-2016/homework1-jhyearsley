@@ -16,7 +16,17 @@ def collatz_step(n):
         The result of C(n).
 
     """
-    pass
+
+    if n<1:
+        raise ValueError('n cannot be less than 1')
+    elif n==1:
+        return 1
+    elif n%2==0:
+        return (n/2)
+    elif n%2==1:
+        return (3*n+1)
+        
+        
 
 def collatz(n):
     """Returns the Collatz sequence beginning with `n`.
@@ -34,4 +44,11 @@ def collatz(n):
         A Collatz sequence.
 
     """
-    pass
+    seq = [n]
+
+    while n>1:
+        n = collatz_step(n)
+        seq.append(n)
+
+        if seq[-1]==1:
+            return seq
