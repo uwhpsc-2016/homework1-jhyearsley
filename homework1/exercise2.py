@@ -1,9 +1,10 @@
 import numpy as np
-import maptlotlib.pyplot as plt
+import pdb
+#import matplotlib.pyplot as plt
 
 
 def gradient_step(xk, df, sigma):
-    """Returns the next iterate x_{k+1} given x_k, the derivative 'f', and parameter sigma
+    """Returns the next iterate x_{k+1} given x_k, the derivative "f'", and parameter sigma
 
     The next iterate x_{k+1} is found by evaluating the difference between x_k and the
     product of sigma with the derivative function f' evaluated at x_k.
@@ -27,9 +28,9 @@ def gradient_step(xk, df, sigma):
 def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):     """
 
 
-    x_next = xk - sigma*df(xk) 
+    xnext = xk - sigma*df(xk) 
 
-    return x_next
+    return xnext
 
  
 def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
@@ -72,12 +73,37 @@ def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
     if not(0<sigma<1):
         raise ValueError('Sigma must be a value strictly between 0 and 1')
     
-    epsilon = 1e-8
-    sigma = 0.5
+    #epsilon = 1e-8
+    #sigma = 0.25
 
     xnext = gradient_step(x,df,sigma)
-   
-    
+   # x = x + 1
 
-    while abs(gradient_step(x,df,sigma)-x) > epsilon:
+
+    while abs(xnext-x) > epsilon:
+        #pdb.set_trace()
+        x = xnext
+        xnext = gradient_step(x,df,sigma)
+        #print (x,xnext)
+
+        
+    return xnext
+        
+   
+#sigma = 0.4
+def f(x):
+    return x**3 - x**2
+
+def df(x):
+    return 3*x**2 - 2*x
+
+print gradient_descent(f,df,0,sigma=0.5)
+
+#for i in range(20):
+#        x = xnext
+#        xnext = gradient_step(x,df,sigma)
+#        print (x,xnext)
+        
+
+
         
