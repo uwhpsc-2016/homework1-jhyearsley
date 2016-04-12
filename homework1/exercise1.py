@@ -69,11 +69,11 @@ for n in np.arange(1,N):
      
      
      
-#plt.scatter(x,m,c='b',marker='o')
-#plt.title('Collatz Function Stopping Times')
-#plt.xlabel('Input to Collatz')
-#plt.ylabel('Stopping Time')
-#plt.show()
+plt.scatter(x,m,c='b',marker='o')
+plt.title('Collatz Function Stopping Times')
+plt.xlabel('Input to Collatz')
+plt.ylabel('Stopping Time')
+plt.show()
     
 
     
