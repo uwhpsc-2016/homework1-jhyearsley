@@ -4,6 +4,8 @@ from numpy.linalg import norm
 from scipy.linalg import solve_triangular
 from scipy import linalg
 
+import matplotlib.pyplot as plt
+
 import numpy as np
 
 def decompose(A):
@@ -38,6 +40,7 @@ def decompose(A):
     U = triu(A,1)
 
     return D,L,U
+    
 
 def is_sdd(A):
     """Determines whether the matrix A is strictly diagonally dominant.
@@ -226,9 +229,96 @@ def gauss_seidel_iteration(A, b, x0, epsilon=1e-8):
 
 #A = array([[10,2,3,4],[3,15,5,6],[5,6,20,8],[2,3,4,10]])
 
-A = array([[2,1],[3,4]])
-b = array([7,18])
-x0 = np.random.rand(2)
-print jacobi_iteration(A, b, x0)
-print gauss_seidel_iteration(A, b, x0)
+#A = array([[2,1],[3,4]])
+#b = array([7,18])
+#x0 = np.random.rand(2)
+#print jacobi_iteration(A, b, x0)
+#print gauss_seidel_iteration(A, b, x0)
+
+
+
+###########Code for report##############
+
+A = np.zeros([32,32])
+A = A + np.diagflat((-5)*np.ones(32)) + np.diagflat(np.ones(31),-1) +\
+    np.diagflat(np.ones(30),-2) + np.diagflat(np.ones(31),1) +\
+    np.diagflat(np.ones(30),2)
+b = np.sin(10*np.linspace(-1,1,32))
+x0 = np.ones(32)
+
+#Jacobi iteration with residual
+def jacobi_iteration_res(A, b, x0, epsilon=1e-8):
+
+    #Initialize parameters
+    D, L, U = decompose(A)
+    xnext = jacobi_step(D, L, U, b, x0)
+    iterationcount = 0
+    res = []
+
+    #Perform Jacobi-iteration until converging to a solution
+
+    while norm(xnext - x0) > epsilon:
+        x0 = xnext
+        xnext = jacobi_step(D, L, U, b, x0)
+        iterationcount += 1
+        resnext = norm(b - A.dot(x0))
+        res.append(resnext)
+        
+
+
+    xsol = xnext
+    numiter = iterationcount
+    
+
+
+
+    return xsol, numiter, res
+
+#Gauss-Seidel with residual
+
+def gauss_seidel_iteration_res(A, b, x0, epsilon=1e-8):
+
+    #Initialize parameters
+    D, L, U = decompose(A)
+    xnext = gauss_seidel_step(D, L, U, b, x0)
+    iterationcount = 0
+    res = []
+
+    #Perform Gauss-Seidel iteration to solve Ax=b
+    while norm(xnext - x0) > epsilon:
+        x0 = xnext
+        xnext = gauss_seidel_step(D, L, U, b, x0)
+
+        iterationcount += 1
+        resnext = norm(b - A.dot(x0))
+        res.append(resnext)
+
+    xsol = xnext
+    numiter = iterationcount
+
+    return xsol, numiter, res
+
+xsolJ, numiterJ, resJ = jacobi_iteration_res(A, b, x0, epsilon=1e-20)
+
+xvalsJ = [n for n in range(numiterJ)]
+yvalsJ = resJ
+
+xsolGS, numiterGS, resGS = gauss_seidel_iteration_res(A, b, x0, epsilon=1e-20)
+
+xvalsGS = [n for n in range(numiterGS)]
+yvalsGS = resGS
+
+plt.hold(True)
+
+plt.scatter(xvalsJ, yvalsJ, c='b', marker='^', label='Jacobi')
+plt.scatter(xvalsGS, yvalsGS, c='r', label='Gauss-Seidel')
+plt.xlabel('Number of Iterations')
+plt.ylabel('Norm of the Residual')
+plt.title('Residuals for Jacobi and Gauss-Seidel')
+plt.legend()
+plt.show()
+
+
+
+
 
