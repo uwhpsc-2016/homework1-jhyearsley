@@ -25,14 +25,15 @@ def gradient_step(xk, df, sigma):
     -------
     x_next : float
        gives the next iterate x_{k+1}
-     """
+    """
 
+    xnext = xk - sigma*df(xk)
     
-    return   xnext = xk - sigma*df(xk) 
+    return   xnext  
 
 
 
-    def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
+def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
     """Returns a minima of `f` using the Gradient Descent method.
 
     A local minima, x*, is such that `f(x*) <= f(x)` for all `x` near `x*`.
@@ -71,12 +72,10 @@ def gradient_step(xk, df, sigma):
 
     if not(0<sigma<1):
         raise ValueError('Sigma must be a value strictly between 0 and 1')
-    
-    #epsilon = 1e-8
-    #sigma = 0.25
 
+    x = x + 1
     xnext = gradient_step(x,df,sigma)
-   # x = x + 1
+    
 
 
     while abs(xnext-x) > epsilon:
@@ -97,13 +96,3 @@ def df(x):
     return 3*x**2 - 2*x
 
 print gradient_descent(f,df,0,sigma=0.5)
-
-
-#for i in range(20):
-#        x = xnext
-#        xnext = gradient_step(x,df,sigma)
-#        print (x,xnext)
-        
-
-
-        
