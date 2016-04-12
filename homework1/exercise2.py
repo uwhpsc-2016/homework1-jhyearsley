@@ -1,6 +1,7 @@
 import numpy as np
 import pdb
-#import matplotlib.pyplot as plt
+from math import pi
+import matplotlib.pyplot as plt
 
 
 def gradient_step(xk, df, sigma):
@@ -86,13 +87,59 @@ def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
 
         
     return xnext
+
+#####Stuff for Report########
+def f(x):
+    return np.cos(x)
+
+def df(x):
+    df = -np.sin(x)
+    return df
+
+
+"""Actual plot of cos"""
+x = np.linspace(0,2*pi,1000)
+f = np.cos(x)
+
+"""Plot iterations for gradient descent"""
+sigma = 0.5
+epsilon = 1e-8
+x0 = 0.1
+xnext = gradient_step(x0,df,sigma)
+
+xvals = []
+
+while abs(xnext-x0) > epsilon:
+    x0 = xnext
+    xnext = gradient_step(x0,df,sigma)
+
+    xvals.append(xnext)
+
+
+fvals = np.cos(xvals)
+    
+
+
+plt.hold(True)
+plt.plot(x,f,c='k',linewidth=2,label='Cos(x)')
+plt.plot(xvals,fvals,'ob',linewidth=20,label='Iteration Points')
+plt.xlabel('x')
+plt.ylabel('f(x)=cos(x)')
+plt.title('Finding a Local Minima for Cos(x)')
+plt.legend()
+plt.plot()
+plt.show()
+
+
+
+
         
    
 #sigma = 0.4
-def f(x):
-    return x**3 - x**2
-
-def df(x):
-    return 3*x**2 - 2*x
-
-print gradient_descent(f,df,0,sigma=0.5)
+##def f(x):
+##    return x**3 - x**2
+##
+##def df(x):
+##    return 3*x**2 - 2*x
+##
+##print gradient_descent(f,df,0,sigma=0.5)
