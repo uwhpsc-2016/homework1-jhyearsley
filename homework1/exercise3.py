@@ -135,27 +135,94 @@ def jacobi_iteration(A, b, x0, epsilon=1e-8):
     #Initialize parameters
     D, L, U = decompose(A)
     xnext = jacobi_step(D, L, U, b, x0)
-    iterations = []
+    iterationcount = 0 
 
     #Perform Jacobi-iteration until converging to a solution
 
     while norm(xnext - x0) > epsilon:
         x0 = xnext
         xnext = jacobi_step(D, L, U, b, x0)
-        iterations.append(1)
+        iterationcount += 1
 
 
     xsol = xnext
-    numiter = len(iterations)
+    numiter = iterationcount
 
-    return xsol, numiter
+    return xsol
 
 def gauss_seidel_step(D, L, U, b, xk):
-    pass
+    """Performs one Gauss-Seidel iteration given an initial guess and other necessary arrays.
+
+    A Gauss-Seidel iteration is performed by writing the equation Ax=b as (D + U)x = b - Lx
+
+    Parameters:
+    ----------
+    D : 2d numpy array
+        Diagonal Matrix with zeros everywhere else
+
+    L : 2d numpy array
+        Lower triangular matrix with zeros everywhere else
+
+    U : 2d numpy array
+        Upper triangular matrix with zeros everywhere else
+
+    b : 1d numpy array
+
+    xk : 1d numpy array
+
+    Returns:
+    -------
+    xnext : 1d numpy array
+        This is the resulting vector representation after performing one Gauss-Seidel iteration.
+
+    """
+    #Solve Ax=b
+    A = D + U
+    b = b - L.dot(xk)
+    xnext = solve_triangular(A,b)
+
+    return xnext
 
 def gauss_seidel_iteration(A, b, x0, epsilon=1e-8):
-    pass
+    """Solves Ax=b by Gauss-Seidel iteration.
 
+    Given an intial guess x0, the function performs Gauss-Seidel iteration until converging to solution
+    'xsol' such that 'xsol' is a solution to the matrix equation Ax=b.
+
+    Parameters:
+    ----------
+    A : 2d square numpy array
+        The square matrix 'A' of the equation Ax=b
+
+    b : 1d numpy array
+        The vector representation of 'b' in the matrix equation Ax=b
+
+    x0 : 1d numpy array
+        The vector representation of the initial guess to start the iteration process
+
+    epsilon : keyword argument
+        Optional parameter to adjust convergence tolerance
+
+    Returns:
+    -------
+    xsol : 1d numpy array
+        This is the solution to the equation Ax=b
+    """
+
+    #Initialize parameters
+    D, L, U = decompose(A)
+    xnext = gauss_seidel_step(D, L, U, b, x0)
+    iterationcount = 0
+
+    #Perform Gauss-Seidel iteration to solve Ax=b
+    while norm(xnext - x0) > epsilon:
+        x0 = xnext
+        xnext = gauss_seidel_step(D, L, U, b, x0)
+
+    xsol = xnext
+
+    return xsol
+    
 
 #A = array([[10,2,3,4],[3,15,5,6],[5,6,20,8],[2,3,4,10]])
 
@@ -163,3 +230,5 @@ A = array([[2,1],[3,4]])
 b = array([7,18])
 x0 = np.random.rand(2)
 print jacobi_iteration(A, b, x0)
+print gauss_seidel_iteration(A, b, x0)
+
