@@ -298,12 +298,12 @@ def gauss_seidel_iteration_res(A, b, x0, epsilon=1e-8):
 
     return xsol, numiter, res
 
-xsolJ, numiterJ, resJ = jacobi_iteration_res(A, b, x0, epsilon=1e-20)
+xsolJ, numiterJ, resJ = jacobi_iteration_res(A, b, x0, epsilon=1e-16)
 
 xvalsJ = [n for n in range(numiterJ)]
 yvalsJ = resJ
 
-xsolGS, numiterGS, resGS = gauss_seidel_iteration_res(A, b, x0, epsilon=1e-20)
+xsolGS, numiterGS, resGS = gauss_seidel_iteration_res(A, b, x0, epsilon=1e-16)
 
 xvalsGS = [n for n in range(numiterGS)]
 yvalsGS = resGS

@@ -9,7 +9,7 @@ def collatz_step(n):
     The Collatz function C : N -> N is used in `collatz` to generate collatz                                                                                         
     sequences. Raises an error if n < 1.                                                                                                                             
                                                                                                                                                                      
-    Parameters                                                                                                                                                       
+    Parameters
     ----------                                                                                                                                                       
     n : int                                                                                                                                                          
                                                                                                                                                                      
