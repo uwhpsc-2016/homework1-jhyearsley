@@ -1,35 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
+/* A simple program to make arrays! */
+
+
+
+
+
+void  print_arr(int* arr, int length)
+  {
+    printf("[");
+    for (int i=0; i<length; i++)
+	printf("%d,",arr[i]);
+    printf("]\n");
+  }
+
+
 
 int main()
 {
 
-  float add_number;
-  printf("Input a number please: ");
-  scanf("%f",&add_number);
-  printf("You entered: %f\n",add_number);
-  printf("Your number lives at '%p' lane\n",&add_number);
-  
-  int a=5;
-  int b=6;
-  int c = a*b;
-  printf("%d*%d = %d\n",a,b,c);
 
+  int arr[4] = {1,3,5,7};
 
-  printf("%d means false and %d means true\n",2==1,2==2);
-
+  print_arr(arr,4);
 
   getchar();
 
-  int arr[5];
-
-  int y;
-  for(y=0; y<5; y++)
-    {
-      arr[y]=y;
-    }
-  printf("arr = [%d,%d,%d,%d]\n",arr[0],arr[1],arr[2],arr[3]);
-
-
-  getchar();
   return 0;
 }
