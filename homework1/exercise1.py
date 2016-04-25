@@ -21,7 +21,7 @@ def collatz_step(n):
 
     """
     if n<1:
-        raise ValueError('wrong')
+        raise ValueError('Input must be greater than 0')
     elif n==1:
         return 1
     elif n%2==0:
@@ -57,23 +57,23 @@ def collatz(n):
 
          if seq[-1]==1:
              return seq
-N = 5000
-m = np.zeros(N-1)
 
-x = np.arange(1,N)
 
-for n in np.arange(1,N):
-    m[n-1] = len(collatz(n))
 
-    
-     
-     
-     
-plt.scatter(x,m,c='b',marker='o')
-plt.title('Collatz Function Stopping Times')
-plt.xlabel('Input to Collatz')
-plt.ylabel('Stopping Time')
-plt.show()
+
+
+##N= 5000
+##m = np.zeros(N-1)
+##
+##x = np.arange(1,N)
+##
+##for n in np.arange(1,N):
+##    m[n-1] = len(collatz(n))
+##plt.scatter(x,m,c='b',marker='o')
+##plt.title('Collatz Function Stopping Times')
+##plt.xlabel('Input to Collatz')
+##plt.ylabel('Stopping Time')
+##plt.show()
     
 
     
