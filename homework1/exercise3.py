@@ -4,7 +4,7 @@ from numpy.linalg import norm
 from scipy.linalg import solve_triangular
 from scipy import linalg
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 import numpy as np
 
@@ -308,15 +308,15 @@ xsolGS, numiterGS, resGS = gauss_seidel_iteration_res(A, b, x0, epsilon=1e-16)
 xvalsGS = [n for n in range(numiterGS)]
 yvalsGS = resGS
 
-plt.hold(True)
-
-plt.scatter(xvalsJ, yvalsJ, c='b', marker='^', label='Jacobi')
-plt.scatter(xvalsGS, yvalsGS, c='r', label='Gauss-Seidel')
-plt.xlabel('Number of Iterations')
-plt.ylabel('Norm of the Residual')
-plt.title('Residuals for Jacobi and Gauss-Seidel')
-plt.legend()
-plt.show()
+##plt.hold(True)
+##
+##plt.scatter(xvalsJ, yvalsJ, c='b', marker='^', label='Jacobi')
+##plt.scatter(xvalsGS, yvalsGS, c='r', label='Gauss-Seidel')
+##plt.xlabel('Number of Iterations')
+##plt.ylabel('Norm of the Residual')
+##plt.title('Residuals for Jacobi and Gauss-Seidel')
+##plt.legend()
+##plt.show()
 
 
 
