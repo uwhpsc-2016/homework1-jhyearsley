@@ -96,10 +96,10 @@ def gradient_descent(f, df, x, sigma=0.5, epsilon=1e-8):
 
 #####Stuff for Report########
 def f(x):
-    return x*x
+    return x*x*x - x*x
 
 def df(x):
-    df = 2*x
+    df = 3*x*x - 2*x
     return df
 
 
