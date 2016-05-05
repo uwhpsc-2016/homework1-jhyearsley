@@ -1,0 +1,20 @@
+test_collatz (__main__.TestExercise1) ... ok
+test_collatz_step (__main__.TestExercise1) ... ok
+test_collatz_step_error (__main__.TestExercise1) ... ok
+test_collatz_step_one (__main__.TestExercise1) ... ok
+test_gradient_descent (__main__.TestExercise2) ... ok
+test_gradient_descent_nearmin_smallsig (__main__.TestExercise2) ... ok
+test_gradient_descent_robust (__main__.TestExercise2) ... ok
+test_gradient_step (__main__.TestExercise2) ... ok
+test_sigma_condition (__main__.TestExercise2) ... ok
+test_decompose (__main__.TestExercise3) ... ok
+test_gauss_seidel_iteration (__main__.TestExercise3) ... ok
+test_gauss_seidel_step (__main__.TestExercise3) ... ok
+test_isSDD (__main__.TestExercise3) ... ok
+test_jacobi_iteration (__main__.TestExercise3) ... ok
+test_jacobi_step (__main__.TestExercise3) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.002s
+
+OK
